@@ -27,8 +27,10 @@ class PDOKAddressValidation(BaseAddressValidation):
         }
 
         sia_address_dict = {}
+        print(result)
         for PDOK_key, sia_key in mapping.items():
             sia_address_dict[sia_key] = result[PDOK_key] if PDOK_key in result else ''
+        sia_address_dict["geometrie"] = result["centroide_ll"]
         return sia_address_dict
 
     def _pdok_request_query_params(self, address, lon=None, lat=None):

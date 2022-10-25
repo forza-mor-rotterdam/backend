@@ -1,24 +1,23 @@
-FROM amsterdam/python:3.9.6-slim-buster
-LABEL org.opencontainers.image.authors="datapunt@amsterdam.nl"
+FROM mguikema/ubi8-python-39-postgis
 
 ENV PYTHONUNBUFFERED 1
+
 EXPOSE 8000
-WORKDIR /app/
+
 COPY requirements.txt /requirements.txt
 
-RUN apt-get update \
-    && apt-get install -y \
-                libgdk-pixbuf2.0-0 \
-                libmagic1 \
-                libcairo2 \
-                libpango1.0-0 \
-                gcc \
+RUN yum update -y \
+    && yum install -y \
+                nc \
+                pkg-config \
                 graphviz \
     && pip install -r /requirements.txt \
-    && apt-get purge -y gcc \
     && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /media && mkdir -p /static && chown datapunt /media && chown datapunt /static
+WORKDIR /app/
+
+RUN chgrp root /app && chown root:2000 /app && chmod g+w /app
+ENV LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH
 
 ENV DJANGO_SETTINGS_MODULE=signals.settings
 ARG DJANGO_SECRET_KEY=insecure_docker_build_key
@@ -26,10 +25,8 @@ ARG DJANGO_SECRET_KEY=insecure_docker_build_key
 COPY app /app/
 COPY deploy /deploy/
 
-RUN chgrp datapunt /app && chmod g+w /app
+RUN mkdir -p /media && mkdir -p /static && chown 2000 /media && chown 2000 /static
 
-USER datapunt
+USER 2000
 
 RUN SECRET_KEY=$DJANGO_SECRET_KEY python manage.py collectstatic --no-input
-
-CMD uwsgi

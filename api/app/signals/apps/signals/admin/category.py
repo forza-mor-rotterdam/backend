@@ -79,8 +79,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
     actions = ['download_csv']
 
-    def has_delete_permission(self, request, obj=None):
-        return False
+    list_editable = ('is_public_accessible',)
+    # def has_delete_permission(self, request, obj=None):
+    #     return False
 
     def save_model(self, request, obj, form, change):
         """
