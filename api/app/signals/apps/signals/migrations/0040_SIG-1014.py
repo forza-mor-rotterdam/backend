@@ -119,5 +119,5 @@ class Migration(migrations.Migration):
                          ('REST', 'REST'), ('ONDERMIJNING', 'ONDERMIJNING')], default='REST',
                 max_length=20),
         ),
-        migrations.RunPython(forward_categories),
+        # migrations.RunPython(forward_categories),
     ]

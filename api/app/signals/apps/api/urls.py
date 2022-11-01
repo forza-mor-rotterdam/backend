@@ -28,6 +28,7 @@ from signals.apps.api.views import (
     StatusMessageTemplatesViewSet,
     StoredSignalFilterViewSet
 )
+from signals.apps.msb.viewsets import PrivateSignalMSBViewSet
 from signals.apps.feedback.rest_framework.views import FeedbackViewSet, StandardAnswerViewSet
 from signals.apps.search.rest_framework.views import SearchView
 from signals.apps.users.rest_framework.views import (
@@ -55,7 +56,8 @@ if settings.ENABLE_PUBLIC_GEO_SIGNAL_ENDPOINT:
 
 # Private API
 private_router = SignalsRouter()
-private_signals = private_router.register(r'private/signals', PrivateSignalViewSet, basename='private-signals')
+# private_signals = private_router.register(r'private/signals', PrivateSignalViewSet, basename='private-signals')
+private_signals = private_router.register(r'private/signals', PrivateSignalMSBViewSet, basename='private-signals')
 private_signals.register(r'attachments', PrivateSignalAttachmentsViewSet, basename='private-signals-attachments',
                          parents_query_lookups=['_signal__pk'])
 private_router.register(r'private/me/filters', StoredSignalFilterViewSet, basename='stored-signal-filters')

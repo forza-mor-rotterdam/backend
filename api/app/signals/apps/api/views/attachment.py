@@ -101,3 +101,7 @@ class PrivateSignalAttachmentsViewSet(
             'text': f'Bijlage {att_filename} is verwijderd.', 'created_by': user
         }, signal=signal)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def list(self, request, *args, **kwargs):
+        data = super().list(request, *args, **kwargs)
+        return data

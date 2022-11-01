@@ -8,6 +8,6 @@ from signals.apps.signals.models import Status
 
 
 class MeldingAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id', 'signal', )
 
 admin.site.register(Melding, MeldingAdmin)

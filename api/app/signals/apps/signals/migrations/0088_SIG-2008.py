@@ -102,5 +102,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(SIG_2008, None),  # Rollback not supported
+        # migrations.RunPython(SIG_2008, None),  # Rollback not supported
     ]

@@ -12,7 +12,7 @@ class SignalAdmin(admin.ModelAdmin):
     signals.Signal model admin, allows some maintenance tasks.
     """
     fields = ('id', 'created_at', 'updated_at', 'get_status_display', 'get_category')
-    list_display = ('id', 'created_at', 'updated_at', 'get_status_display', 'get_category')
+    list_display = ('id', 'get_msb_id', 'created_at', 'updated_at', 'get_status_display', 'get_category', 'location')
     # list_display_links = None  # change page not relevant
     ordering = ('-id',)
     list_per_page = 20
@@ -59,6 +59,9 @@ class SignalAdmin(admin.ModelAdmin):
 
     def get_category(self, obj):
         return obj.category_assignment.category.name if obj.category_assignment else None
+
+    def get_msb_id(self, obj):
+        return obj.melding.msb_id if hasattr(obj, "melding") else None
 
     get_category.short_description = 'category'
 

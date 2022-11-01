@@ -34,109 +34,26 @@ def create_initial_data_departments(apps, schema_editor):
 
 def create_initial_data_categories(apps, schema_editor):
     """Creating initial data for all categories."""
-    categories = (
-        # code,  main_categorie,                             sub_categorie,                                handling,      departments              # noqa
-        ('F01',  'Afval',                                    'Veeg- / zwerfvuil',                          'A3DEC',       'CCA,ASC,STW'),          # noqa
-        ('F02',  'Afval',                                    'Grofvuil',                                   'A3DEVOMC',    'CCA,ASC,AEG'),          # noqa
-        ('F03',  'Afval',                                    'Huisafval',                                  'A3DMC',       'CCA,ASC,AEG'),          # noqa
-        ('F04',  'Afval',                                    'Bedrijfsafval',                              'A3DMC',       'CCA,ASC,AEG'),          # noqa
-        ('F05',  'Afval',                                    'Puin / sloopafval',                          'A3DMC',       'CCA,ASC,AEG'),          # noqa
-        ('F06',  'Afval',                                    'Container is vol',                           'A3DMC',       'CCA,ASC,AEG'),          # noqa
-        ('F07',  'Afval',                                    'Prullenbak is vol',                          'A3DEC',       'CCA,ASC,STW'),          # noqa
-        ('F08',  'Afval',                                    'Container is kapot',                         'A3DMC',       'CCA,ASC,AEG'),          # noqa
-        ('F09',  'Afval',                                    'Prullenbak is kapot',                        'A3DMC',       'CCA,ASC,STW'),          # noqa
-        ('F10',  'Afval',                                    'Asbest / accu',                              'A3DMC',       'CCA,ASC,AEG'),          # noqa
-        ('F11',  'Afval',                                    'Overig afval',                               'I5DMC',       'CCA,ASC,STW,AEG'),      # noqa
-        ('F12',  'Afval',                                    'Container voor plastic afval is vol',        'A3DMC',       'CCA,ASC,AEG'),          # noqa
-        ('F13',  'Afval',                                    'Container voor plastic afval is kapot',      'A3DMC',       'CCA,ASC,AEG'),          # noqa
-        ('F14',  'Wegen, verkeer, straatmeubilair',          'Onderhoud stoep, straat en fietspad',        'A3DEC',       'CCA,ASC,STW'),          # noqa
-        ('F15',  'Wegen, verkeer, straatmeubilair',          'Verkeersbord, verkeersafzetting',            'A3DEC',       'CCA,ASC,STW'),          # noqa
-        ('F16',  'Wegen, verkeer, straatmeubilair',          'Gladheid',                                   'GLADZC',      'CCA,ASC,STW'),          # noqa
-        ('F17',  'Wegen, verkeer, straatmeubilair',          'Omleiding / belijning verkeer',              'A3WEC',       'CCA,ASC,STW'),          # noqa
-        ('F18',  'Wegen, verkeer, straatmeubilair',          'Brug',                                       'A3WEC',       'CCA,ASC,STW'),          # noqa
-        ('F19',  'Wegen, verkeer, straatmeubilair',          'Straatmeubilair',                            'I5DMC',       'CCA,ASC,STW'),          # noqa
-        ('F20',  'Wegen, verkeer, straatmeubilair',          'Fietsrek / nietje',                          'I5DMC',       'CCA,ASC,STW'),          # noqa
-        ('F21',  'Wegen, verkeer, straatmeubilair',          'Put / riolering verstopt',                   'I5DMC',       'CCA,ASC,STW'),          # noqa
-        ('F22',  'Wegen, verkeer, straatmeubilair',          'Speelplaats',                                'I5DMC',       'CCA,ASC,STW'),          # noqa
-        ('F23',  'Wegen, verkeer, straatmeubilair',          'Sportvoorziening',                           'I5DMC',       'CCA,ASC,STW'),          # noqa
-        ('F24a', 'Wegen, verkeer, straatmeubilair',          'Straatverlichting / openbare klok',          'KLOKLICHTZC', 'CCA,ASC'),              # noqa
-        ('F24b', 'Wegen, verkeer, straatmeubilair',          'Klok',                                       'KLOKLICHTZC', 'CCA,ASC,OVL'),          # noqa
-        ('F25',  'Wegen, verkeer, straatmeubilair',          'Verkeerslicht',                              'STOPEC',      'CCA,ASC,VRI'),          # noqa
-        ('F26',  'Wegen, verkeer, straatmeubilair',          'Overig Wegen, verkeer, straatmeubilair',     'I5DMC',       'CCA,ASC,STW'),          # noqa
-        ('F27',  'Wegen, verkeer, straatmeubilair',          'Verkeersoverlast / Verkeerssituaties',       'I5DMC',       'CCA,ASC,THO'),          # noqa
-        ('F28',  'Overlast in de openbare ruimte',           'Lozing / dumping / bodemverontreiniging',    'A3DMC',       'CCA,ASC,OMG'),          # noqa
-        ('F29',  'Overlast in de openbare ruimte',           'Parkeeroverlast',                            'A3DMC',       'CCA,ASC,THO'),          # noqa
-        ('F30',  'Overlast in de openbare ruimte',           'Fietswrak',                                  'A3WMC',       'CCA,ASC,STW,THO'),      # noqa
-        ('F31',  'Overlast in de openbare ruimte',           'Stank- / geluidsoverlast',                   'A3WMC',       'CCA,ASC,THO,VTH'),      # noqa
-        ('F32',  'Overlast in de openbare ruimte',           'Bouw- / sloopoverlast',                      'A3WMC',       'CCA,ASC,VTH'),          # noqa
-        ('F33',  'Overlast in de openbare ruimte',           'Auto- / scooter- / bromfiets(wrak)',         'A3WMC',       'CCA,ASC,VTH'),          # noqa
-        ('F34',  'Overlast in de openbare ruimte',           'Graffiti / wildplak',                        'I5DMC',       'CCA,ASC,STW'),          # noqa
-        ('F35',  'Overlast in de openbare ruimte',           'Honden(poep)',                               'A3WMC',       'CCA,ASC,STW'),          # noqa
-        ('F36',  'Overlast in de openbare ruimte',           'Hinderlijk geplaatst object',                'I5DMC',       'CCA,ASC,THO'),          # noqa
-        ('F39',  'Overlast in de openbare ruimte',           'Deelfiets',                                  'A3WMC',       'CCA,ASC,STW'),          # noqa
-        ('F40',  'Overlast in de openbare ruimte',           'Overig openbare ruimte',                     'I5DMC',       'CCA,ASC,STW,THO,VTH'),  # noqa
-        ('F41',  'Openbaar groen en water',                  'Boom',                                       'I5DMC',       'CCA,ASC,STW'),          # noqa
-        ('F42',  'Openbaar groen en water',                  'Maaien / snoeien',                           'I5DMC',       'CCA,ASC,STW'),          # noqa
-        ('F43',  'Openbaar groen en water',                  'Onkruid',                                    'I5DMC',       'CCA,ASC,STW'),          # noqa
-        ('F44',  'Openbaar groen en water',                  'Drijfvuil',                                  'I5DMC',       'CCA,ASC,STW'),          # noqa
-        ('F45',  'Openbaar groen en water',                  'Oever / kade / steiger',                     'I5DMC',       'CCA,ASC,STW'),          # noqa
-        ('F46',  'Openbaar groen en water',                  'Overig groen en water',                      'I5DMC',       'CCA,ASC,STW'),          # noqa
-        ('F48',  'Overlast van dieren',                      'Ratten',                                     'I5DMC',       'CCA,ASC,GGD'),          # noqa
-        ('F49',  'Overlast van dieren',                      'Ganzen',                                     'I5DMC',       'CCA,ASC,GGD'),          # noqa
-        ('F50',  'Overlast van dieren',                      'Duiven',                                     'I5DMC',       'CCA,ASC,GGD'),          # noqa
-        ('F51',  'Overlast van dieren',                      'Meeuwen',                                    'I5DMC',       'CCA,ASC,GGD'),          # noqa
-        ('F52',  'Overlast van dieren',                      'Wespen',                                     'I5DMC',       'CCA,ASC,GGD'),          # noqa
-        ('F53',  'Overlast van dieren',                      'Dode dieren',                                'A3DMC',       'CCA,ASC,GGD'),          # noqa
-        ('F54',  'Overlast van dieren',                      'Overig dieren',                              'I5DMC',       'CCA,ASC,GGD'),          # noqa
-        ('F55a', 'Overlast van en door personen of groepen', 'Vuurwerkoverlast',                           'A3DMC',       'CCA,ASC,THO'),          # noqa
-        ('F55b', 'Overlast van en door personen of groepen', 'Overlast door afsteken vuurwerk',            'A3DMC',       'CCA,ASC,THO'),          # noqa
-        ('F56',  'Overlast van en door personen of groepen', 'Overige overlast door personen',             'A3DMC',       'CCA,ASC,THO'),          # noqa
-        ('F57',  'Overlast van en door personen of groepen', 'Personen op het water',                      'A3DMC',       'CCA,ASC,THO'),          # noqa
-        ('F58',  'Overlast van en door personen of groepen', "Overlast van taxi's, bussen en fietstaxi's", 'A3DMC',       'CCA,ASC,THO'),          # noqa
-        ('F59',  'Overlast van en door personen of groepen', 'Jongerenoverlast',                           'A3DMC',       'CCA,ASC,THO'),          # noqa
-        ('F60',  'Overlast van en door personen of groepen', 'Daklozen / bedelen',                         'A3DMC',       'CCA,ASC,THO'),          # noqa
-        ('F61',  'Overlast van en door personen of groepen', 'Wildplassen / poepen / overgeven',           'A3DMC',       'CCA,ASC,THO'),          # noqa
-        ('F62',  'Overlast van en door personen of groepen', 'Drank- en drugsoverlast',                    'A3DMC',       'CCA,ASC,THO'),          # noqa
-        ('F63',  'Overlast Bedrijven en Horeca',             'Geluidsoverlast muziek',                     'I5DMC',       'CCA,ASC,VTH'),          # noqa
-        ('F64',  'Overlast Bedrijven en Horeca',             'Geluidsoverlast installaties',               'I5DMC',       'CCA,ASC,VTH'),          # noqa
-        ('F65',  'Overlast Bedrijven en Horeca',             'Overlast terrassen',                         'I5DMC',       'CCA,ASC,VTH'),          # noqa
-        ('F66a', 'Overlast Bedrijven en Horeca',             'Stank horeca/bedrijven',                     'I5DMC',       'CCA,ASC,VTH'),          # noqa
-        ('F66b', 'Overlast Bedrijven en Horeca',             'Stankoverlast',                              'I5DMC',       'CCA,ASC,VTH'),          # noqa
-        ('F67',  'Overlast Bedrijven en Horeca',             'Overlast door bezoekers (niet op terras)',   'I5DMC',       'CCA,ASC,THO'),          # noqa
-        ('F68',  'Overlast Bedrijven en Horeca',             'Overig horeca/bedrijven',                    'I5DMC',       'CCA,ASC,THO,VTH'),      # noqa
-        ('F69a', 'Overlast op het water',                    'Overlast op het water - snel varen',         'WS1EC',       'CCA,ASC,WAT'),          # noqa
-        ('F69b', 'Overlast op het water',                    'Overlast op het water - Vaargedrag',         'WS1EC',       'CCA,ASC,WAT'),          # noqa
-        ('F70',  'Overlast op het water',                    'Overlast op het water - geluid',             'WS1EC',       'CCA,ASC,WAT'),          # noqa
-        ('F71',  'Overlast op het water',                    'Overlast op het water - Gezonken boot',      'WS2EC',       'CCA,ASC,WAT'),          # noqa
-        ('F72a', 'Overlast op het water',                    'Scheepvaart nautisch toezicht',              'WS1EC',       'CCA,ASC,WAT'),          # noqa
-        ('F72b', 'Overlast op het water',                    'Overlast vanaf het water',                   'WS1EC',       'CCA,ASC,WAT'),          # noqa
-        ('F72c', 'Overlast op het water',                    'Overig boten',                               'WS1EC',       'CCA,ASC,WAT'),          # noqa
-        ('F73',  'Overig',                                   'Overig',                                     'REST',        'CCA,ASC'),              # noqa
-    )
+    categories = (('Parkeeroverlast', 'Aanhangers/caravans', 'REST'), ('Gevaarlijk (straat)afval', 'accu', 'REST'), ('Vuil op straat', 'Andere uitwerpselen', 'REST'), ('Gevaarlijk (straat)afval', 'asbest', 'REST'), ('Afval', 'bedrijfsafval', 'REST'), ('Straatverlichting', 'beschadigde lichtmast', 'REST'), ('Singels en sloten', 'beschoeiingen', 'REST'), ('Straatmeubilair kapot', 'bewegwijzering', 'REST'), ('Bomen, planten, gras', 'bloembakken', 'REST'), ('Bomen, planten, gras', 'Bomen', 'REST'), ('Weg (fiets/voet)pad brug', 'boomwortels', 'REST'), ('(Weg)werkzaamheden', 'bouwplaatsen - algemeen', 'REST'), ('Afvalcontainer+Prullenbak', 'Bouw/puincontainer', 'REST'), ('Straatverlichting', 'brandt geen verlichting in gehele straat', 'REST'), ('Wrakken', '(Brom-)fietswrak', 'REST'), ('Weg (fiets/voet)pad brug', 'brug', 'REST'), ('Afvalcontainer+Prullenbak', 'cocon/1100 liter rolcontainer vol', 'REST'), ('Afvalcontainer+Prullenbak', 'Containerruimte markthal', 'REST'), ('Maatregelen COVID -19', 'Controle coronatoegangsbewijs ', 'REST'), ('Dieren', 'Dieren overig', 'REST'), ('Dieren', 'Dode duiven', 'REST'), ('Dieren', 'Dode ratten', 'REST'), ('Dieren', 'Dode vogels', 'REST'), ('Dieren', 'dood dier in/aan water (geen rat/duif)', 'REST'), ('Dieren', 'dood dier op/aan weg (geen rat/duif)', 'REST'), ('Singels en sloten', 'drijfvuil in singel', 'REST'), ('Dieren', 'Duivenoverlast', 'REST'), ('Dieren', 'Eikenprocessierups', 'REST'), ('Weg (fiets/voet)pad brug', 'fietspad', 'REST'), ('Meldkamer Stadsbeheer', 'Flying Squads Schone Stad', 'REST'), ('Meldkamer Stadsbeheer', 'Flying Squads T&H', 'REST'), ('Singels en sloten', 'Fonteinen', 'REST'), ('Vuil op straat', 'Ganzen- of eendenpoep', 'REST'), ('Gevaarlijk (straat)afval', 'gastank/brandblusapparatuur', 'REST'), ('Weg (fiets/voet)pad brug', 'gebiedsgericht', 'REST'), ('Weg (fiets/voet)pad brug', 'gladheid (sneeuw-ijzel-vorst)', 'REST'), ('Afvalcontainer+Prullenbak', 'glascontainer kapot', 'REST'), ('Afvalcontainer+Prullenbak', 'glascontainer vol', 'REST'), ('Vuil op straat', 'glas op straat', 'REST'), ('Graffiti', 'graffiti-discriminerend', 'REST'), ('Graffiti', 'graffiti-overig', 'REST'), ('Bomen, planten, gras', 'Gras', 'REST'), ('Afval', 'Grofvuil in plantsoen', 'REST'), ('Afval', 'Grofvuil op straat', 'REST'), ('Afval', 'grond/zand/grind', 'REST'), ('Parkeeroverlast', 'Hinderlijk geparkeerde (brom-)fiets', 'REST'), ('Vuil op straat', 'Hondenpoep op straat', 'REST'), ('Vuil op straat', 'honden-uitlaatzone', 'REST'), ('Wateroverlast / riolering', 'hoofdriool', 'REST'), ('Afvalcontainer+Prullenbak', 'Huiscontainer(gfe+t/gft) niet geleegd', 'REST'), ('Afvalcontainer+Prullenbak', 'Huiscontainer kapot', 'REST'), ('Afvalcontainer+Prullenbak', 'Huiscontainer(papier) niet geleegd', 'REST'), ('Afvalcontainer+Prullenbak', 'Huiscontainer(rest) niet geleegd', 'REST'), ('Afval', 'huisvuil verkeerd aangeboden', 'REST'), ('Afval', 'huisvuilzakken naast container', 'REST'), ('Afval', 'huisvuilzakken niet opgehaald', 'REST'), ('(Weg)werkzaamheden', 'ingraving - huisaansluiting', 'REST'), ('Gevaarlijk (straat)afval', 'injectienaalden/spuiten', 'REST'), ('Weg (fiets/voet)pad brug', 'invalide-oprit', 'REST'), ('Bomen, planten, gras', 'Japanse Duizendknoop', 'REST'), ('Vuil op straat', 'Kerstboom op straat', 'REST'), ('Afval', 'Klein Afval', 'REST'), ('Gevaarlijk (straat)afval', '(klein) chemisch afval', 'REST'), ('Straatmeubilair kapot', 'klok / uurwerk ', 'REST'), ('Afval', 'koelkast/vriezer', 'REST'), ('Straatverlichting', 'lamp(en) uit', 'REST'), ('Dieren', 'Levende ratten', 'REST'), ('Straatverlichting', 'lichtmastluikje staat open / bedrading zichtbaar', 'REST'), ('Overige onderwerpen', 'Marktvoorzieningen', 'REST'), ('Overige onderwerpen', 'Melding op begraafplaats', 'REST'), ('Gevaarlijk (straat)afval', '(olie)lekkage/morsing', 'REST'), ('Gevaarlijk (straat)afval', '(olie)vaten', 'REST'), ('Gevaarlijk (straat)afval', 'onbekende stoffen', 'REST'), ('Vuil op straat', 'Onkruid in groen', 'REST'), ('Vuil op straat', 'Onkruid op verharding', 'REST'), ('Straatmeubilair kapot', 'openbaar oplaadpunt elektrische auto', 'REST'), ('Overige onderwerpen', 'Openbare werken algemeen', 'REST'), ('Overig', 'Overig', 'REST'), ('Vuil op straat', 'Overlast blad of bloesem', 'REST'), ('Overlast', 'Overlast markten', 'REST'), ('Dieren', 'Overlast wespen, bijen, hommels', 'REST'), ('Afvalcontainer+Prullenbak', 'papiercontainer kapot', 'REST'), ('Afvalcontainer+Prullenbak', 'papiercontainer vol', 'REST'), ('Parkeeroverlast', 'Parkeeroverlast', 'REST'), ('Bomen, planten, gras', 'plantsoenen', 'REST'), ('Wildplakken', 'Posters', 'REST'), ('Afvalcontainer+Prullenbak', 'prullenbak kapot', 'REST'), ('Afvalcontainer+Prullenbak', 'prullenbak vol ', 'REST'), ('Wildplakken', 'Reclamebord', 'REST'), ('Afvalcontainer+Prullenbak', 'restafvalcontainer kapot', 'REST'), ('Afvalcontainer+Prullenbak', 'restafvalcontainer vol', 'REST'), ('Weg (fiets/voet)pad brug', 'rijweg', 'REST'), ('Wateroverlast / riolering', 'Rioolaansluiting (verstopping)', 'REST'), ('Weg (fiets/voet)pad brug', 'roltrap/rolband', 'REST'), ('Wildplakken', 'sandwichborden', 'REST'), ('Straatverlichting', 'scheefstaande lichtmast', 'REST'), ('Overige onderwerpen', 'Schone Stad algemeen', 'REST'), ('Singels en sloten', 'singel ', 'REST'), ('Wateroverlast / riolering', 'slechte/geen afwatering', 'REST'), ('Afval', 'sloopafval', 'REST'), ('Weg (fiets/voet)pad brug', 'sluis', 'REST'), ('Speelplaatsen', 'speelplaats', 'REST'), ('Overige onderwerpen', 'Stadsontwikkeling Algemeen', 'REST'), ('Wateroverlast / riolering', 'stankoverlast', 'REST'), ('Wildplakken', 'Stickers', 'REST'), ('Wateroverlast / riolering', 'storing gemaal', 'REST'), ('Wateroverlast / riolering', 'straatkolk (verstopt)', 'REST'), ('Straatmeubilair kapot', 'straatmeubilair algemeen', 'REST'), ('Straatmeubilair kapot', 'straatnaambord/verkeersbord', 'REST'), ('Parkeeroverlast', 'Te lang geparkeerde (brom-)fiets', 'REST'), ('Afvalcontainer+Prullenbak', 'textielcontainer kapot', 'REST'), ('Afvalcontainer+Prullenbak', 'textielcontainer vol', 'REST'), ('(Weg)werkzaamheden', 'tijdelijke verkeerssituatie', 'REST'), ('Overige onderwerpen', 'Toezicht & Handhaving algemeen', 'REST'), ('Weg (fiets/voet)pad brug', 'tunnels/viaducten', 'REST'), ('Gevaarlijk (straat)afval', 'uitgebrande voertuigen (herstel wegdek)', 'REST'), ('Weg (fiets/voet)pad brug', 'verkeersdrempel', 'REST'), ('Straatverlichting', 'verlichting brandt ook overdag', 'REST'), ('Straatverlichting', 'verlichting overig: (geef omschrijving)', 'REST'), ('Weg (fiets/voet)pad brug', 'voetpad', 'REST'), ('Wateroverlast / riolering', 'Water in de kruipruimte, de kelder of in de tuin', 'REST'), ('Wateroverlast / riolering', 'Water- of rioolpersleiding', 'REST'), ('Straatmeubilair kapot', 'Watertappunt', 'REST'), ('Afvalcontainer+Prullenbak', 'Wijkcontainer (gfe) kapot', 'REST'), ('Afvalcontainer+Prullenbak', 'Wijkcontainer (gfe) vol', 'REST'), ('Winkelwagens', 'winkelwagens', 'REST'), ('Wrakken', 'wrak - auto', 'REST'), ('Singels en sloten', 'zinkvuil/vloeistoffen in singel', 'REST'), ('Vuil op straat', 'zwerfvuil in het water', 'REST'), ('Vuil op straat', 'zwerfvuil in plantsoen', 'REST'), ('Vuil op straat', 'zwerfvuil op straat', 'REST'))
 
     MainCategory = apps.get_model('signals', 'MainCategory')
     SubCategory = apps.get_model('signals', 'SubCategory')
-    Department = apps.get_model('signals', 'Department')
+    i = 0
     for category in categories:
-        code = category[0]
-        main_category_name = category[1]
-        sub_category_name = category[2]
-        handling = category[3]
-        departments = category[4].split(',')
+        i += 1
+        main_category_name = category[0]
+        sub_category_name = category[1]
+        handling = category[2]
 
         # Creating (or get if already exist) `MainCategory` object.
         main_category, _ = MainCategory.objects.get_or_create(name=main_category_name)
-
         # Creating `SubCategory` object.
-        sub_category = SubCategory.objects.create(main_category=main_category,
-                                                  code=code,
-                                                  name=sub_category_name,
-                                                  handling=handling)
-
-        # Creating relations between `SubCategory` and `Department` objects.
-        for department_code in departments:
-            department = Department.objects.get(code=department_code)
-            sub_category.departments.add(department)
+        sub_category = SubCategory.objects.create(
+            code=f'F{i:02d}',
+            main_category=main_category,
+            name=sub_category_name,
+            handling=handling
+        )
 
 
 class Migration(migrations.Migration):

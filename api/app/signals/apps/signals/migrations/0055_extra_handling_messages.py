@@ -39,5 +39,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(change_categories),
+        # migrations.RunPython(change_categories),
     ]

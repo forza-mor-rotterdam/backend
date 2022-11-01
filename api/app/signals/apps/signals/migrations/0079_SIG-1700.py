@@ -49,5 +49,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(_migrate, _rollback),
+        # migrations.RunPython(_migrate, _rollback),
     ]

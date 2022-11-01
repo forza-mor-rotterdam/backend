@@ -32,7 +32,7 @@ AFGEHANDELD_EXTERN = 'done external'
 # Choices for the API/Serializer layer. Users that can change the state via the API are only allowed
 # to use one of the following choices.
 STATUS_CHOICES_API = (
-    (GEMELD, 'Gemeld'),
+    (GEMELD, 'Nieuw'),
     (AFWACHTING, 'In afwachting van behandeling'),
     (BEHANDELING, 'In behandeling'),
     (ON_HOLD, 'On hold'),

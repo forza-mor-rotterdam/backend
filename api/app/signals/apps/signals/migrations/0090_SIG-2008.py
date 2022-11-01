@@ -22,6 +22,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunSQL(update_is_responsible),
-        migrations.RunSQL(update_can_view),
+        # migrations.RunSQL(update_is_responsible),
+        # migrations.RunSQL(update_can_view),
     ]

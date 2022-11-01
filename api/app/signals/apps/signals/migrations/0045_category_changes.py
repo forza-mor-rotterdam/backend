@@ -75,6 +75,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(remove_categories),
-        migrations.RunPython(add_categories),
+        # migrations.RunPython(remove_categories),
+        # migrations.RunPython(add_categories),
     ]
