@@ -42,8 +42,8 @@ from signals.apps.users.rest_framework.views import (
 # Public API
 public_router = SignalsRouter()
 public_router.register(r'public/signals', PublicSignalViewSet, basename='public-signals')
-public_router.register(r'public/feedback/standard_answers', StandardAnswerViewSet, basename='feedback-standard-answers')
-public_router.register(r'public/feedback/forms', FeedbackViewSet, basename='feedback-forms')
+# public_router.register(r'public/feedback/standard_answers', StandardAnswerViewSet, basename='feedback-standard-answers')
+# public_router.register(r'public/feedback/forms', FeedbackViewSet, basename='feedback-forms')
 public_router.register(r'public/areas', PublicAreasViewSet, basename='public-areas')
 
 public_categories = public_router.register(r'public/terms/categories', PublicCategoryViewSet,

@@ -30,7 +30,7 @@ class MSBService:
                 url=url,
                 data=data,
                 headers={
-                    "Authorization": f"Bearer user_token"
+                    "Authorization": f"Bearer {user_token}"
                 },
                 timeout=MSBService.default_timeout,
             )
@@ -41,9 +41,14 @@ class MSBService:
         return json_response
 
     @staticmethod
-    def login():
+    def login(username: str, password: str):
         url=f"{MSBService.url_base}/login"
-        return MSBService.do_request(url, MSBService.POST)
+        data = {
+            "uid": username,
+            "pwd": password,
+        }
+        response_data = MSBService.do_request(url, MSBService.POST, data)
+        return bool(response_data.get("success")), response_data.get("result")
 
     @staticmethod
     def get_user_info(user_token):

@@ -1,4 +1,5 @@
 from typing import Union
+import os
 from fastapi import FastAPI, Header, status,HTTPException
 from data import meldingen
 from fastapi.responses import JSONResponse
@@ -7,7 +8,7 @@ app = FastAPI()
 
 def authenticate_user(authorization_header: str):
     auth_parts = authorization_header.split(" ") if authorization_header else []
-    if len(auth_parts) == 2 and auth_parts[0] == "Bearer" and auth_parts[1] == "user_token":
+    if len(auth_parts) == 2 and auth_parts[0] == "Bearer" and auth_parts[1] == os.getenv('MSB_USER_TOKEN'):
         return True
     return False
 
