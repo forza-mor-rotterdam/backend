@@ -34,5 +34,5 @@ class Migration(migrations.Migration):
         ('signals', '0079_SIG-1700'),
     ]
     operations = [
-        migrations.RunPython(_set_service_level),
+        # migrations.RunPython(_set_service_level),
     ]

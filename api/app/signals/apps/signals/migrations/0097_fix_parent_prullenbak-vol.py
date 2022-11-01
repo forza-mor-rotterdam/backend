@@ -85,7 +85,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(_new_categories, None),  # No reverse possible
-        migrations.RunPython(_ml_translations, None),  # No reverse possible
-        migrations.RunPython(_deactivate_categories, None),  # No reverse possible
+        # migrations.RunPython(_new_categories, None),  # No reverse possible
+        # migrations.RunPython(_ml_translations, None),  # No reverse possible
+        # migrations.RunPython(_deactivate_categories, None),  # No reverse possible
     ]

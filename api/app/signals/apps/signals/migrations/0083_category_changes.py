@@ -181,8 +181,8 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(_SIG_1900, None),  # Adding a category cannot be reversed
-        migrations.RunPython(_SIG_1913, _SIG_1913_rollback),
-        migrations.RunPython(_SIG_1874, _SIG_1874_rollback),
-        migrations.RunPython(_SIG_1831, _SIG_1831_rollback),
+        # migrations.RunPython(_SIG_1900, None),  # Adding a category cannot be reversed
+        # migrations.RunPython(_SIG_1913, _SIG_1913_rollback),
+        # migrations.RunPython(_SIG_1874, _SIG_1874_rollback),
+        # migrations.RunPython(_SIG_1831, _SIG_1831_rollback),
     ]

@@ -59,6 +59,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(_set_state_afgehandeld_extern),
-        migrations.RunPython(_remove_stw_from_verkeerssituaties)
+        # migrations.RunPython(_set_state_afgehandeld_extern),
+        # migrations.RunPython(_remove_stw_from_verkeerssituaties)
     ]

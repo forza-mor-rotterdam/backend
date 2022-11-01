@@ -213,8 +213,8 @@ class Migration(migrations.Migration):
                          ('WS3EC', 'WS3EC'), ('EMPTY', 'EMPTY')], default='REST',
                 max_length=20),
         ),
-        migrations.RunPython(remove_cca_from_departments),
-        migrations.RunPython(remove_categories),
-        migrations.RunPython(change_categories),
-        migrations.RunPython(add_categories),
+        # migrations.RunPython(remove_cca_from_departments),
+        # migrations.RunPython(remove_categories),
+        # migrations.RunPython(change_categories),
+        # migrations.RunPython(add_categories),
     ]

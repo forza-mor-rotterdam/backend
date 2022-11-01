@@ -1,7 +1,10 @@
 # SPDX-License-Identifier: MPL-2.0
 # Copyright (C) 2019 - 2022 Gemeente Amsterdam, Vereniging van Nederlandse Gemeenten
 import logging
-
+import json
+from ast import arg
+from datetime import datetime
+import requests
 from datapunt_api.rest import DatapuntViewSet, HALPagination
 from django.db.models import CharField, Value
 from django.db.models.functions import JSONObject
@@ -38,7 +41,7 @@ from signals.apps.services.domain.pdf_summary import PDFSummaryService
 from signals.apps.signals.models import Signal
 from signals.apps.signals.models.aggregates.json_agg import JSONAgg
 from signals.apps.signals.models.functions.asgeojson import AsGeoJSON
-from signals.auth.backend import JWTAuthBackend
+from signals.auth.backend import AuthBackend
 
 logger = logging.getLogger(__name__)
 
@@ -79,7 +82,7 @@ class PrivateSignalViewSet(mixins.CreateModelMixin, mixins.UpdateModelMixin, Dat
 
     pagination_class = HALPagination
 
-    authentication_classes = (JWTAuthBackend,)
+    authentication_classes = (AuthBackend,)
     permission_classes = (SignalCreateInitialPermission,)
     object_permission_classes = (SignalViewObjectPermission, )
 
@@ -290,3 +293,4 @@ class PrivateSignalViewSet(mixins.CreateModelMixin, mixins.UpdateModelMixin, Dat
 
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+

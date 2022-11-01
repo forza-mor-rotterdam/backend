@@ -20,7 +20,7 @@ from signals.apps.api.serializers import (
 )
 from signals.apps.services.domain.permissions.signal import SignalPermissionService
 from signals.apps.signals.models import Attachment, Signal
-from signals.auth.backend import JWTAuthBackend
+from signals.auth.backend import AuthBackend
 
 
 class PublicSignalAttachmentsViewSet(mixins.CreateModelMixin, GenericViewSet):
@@ -47,7 +47,7 @@ class PrivateSignalAttachmentsViewSet(
     serializer_class = PrivateSignalAttachmentSerializer
     serializer_detail_class = PrivateSignalAttachmentSerializer
 
-    authentication_classes = (JWTAuthBackend,)
+    authentication_classes = (AuthBackend,)
 
     def get_queryset(self, *args, **kwargs):
         user = self.request.user
@@ -101,3 +101,7 @@ class PrivateSignalAttachmentsViewSet(
             'text': f'Bijlage {att_filename} is verwijderd.', 'created_by': user
         }, signal=signal)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def list(self, request, *args, **kwargs):
+        data = super().list(request, *args, **kwargs)
+        return data

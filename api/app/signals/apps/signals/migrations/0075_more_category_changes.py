@@ -322,7 +322,7 @@ class Migration(migrations.Migration):
                 max_length=20
             ),
         ),
-        migrations.RunPython(CategoryMutation().new_main(NEW_SIG_1705).run),
-        migrations.RunPython(CategoryMutation().new_sub(NEW_SIG_1706).run),
-        migrations.RunPython(CategoryMutation().change_sub(CHANGES_SIG_1707).run),
+        # migrations.RunPython(CategoryMutation().new_main(NEW_SIG_1705).run),
+        # migrations.RunPython(CategoryMutation().new_sub(NEW_SIG_1706).run),
+        # migrations.RunPython(CategoryMutation().change_sub(CHANGES_SIG_1707).run),
     ]

@@ -12,8 +12,8 @@ class SignalAdmin(admin.ModelAdmin):
     signals.Signal model admin, allows some maintenance tasks.
     """
     fields = ('id', 'created_at', 'updated_at', 'get_status_display', 'get_category')
-    list_display = ('id', 'created_at', 'updated_at', 'get_status_display', 'get_category')
-    list_display_links = None  # change page not relevant
+    list_display = ('id', 'get_msb_id', 'created_at', 'updated_at', 'get_status_display', 'get_category', 'location')
+    # list_display_links = None  # change page not relevant
     ordering = ('-id',)
     list_per_page = 20
     list_select_related = True
@@ -21,7 +21,7 @@ class SignalAdmin(admin.ModelAdmin):
 
     # Add an action that frees signals stuck between SIA and CityControl. These
     # signals need to be in workflow.VERZONDEN state.
-    actions = ['free_signals']
+    # actions = ['free_signals']
 
     def free_signals(self, request, queryset):
         filtered_signals = queryset.filter(status__state=workflow.VERZONDEN)
@@ -53,12 +53,15 @@ class SignalAdmin(admin.ModelAdmin):
 
     # Get the human readable status and category:
     def get_status_display(self, obj):
-        return obj.status.get_state_display()
+        return obj.status.get_state_display() if obj.status else None
 
     get_status_display.short_description = 'status'
 
     def get_category(self, obj):
-        return obj.category_assignment.category.name
+        return obj.category_assignment.category.name if obj.category_assignment else None
+
+    def get_msb_id(self, obj):
+        return obj.melding.msb_id if hasattr(obj, "melding") else None
 
     get_category.short_description = 'category'
 
@@ -69,5 +72,5 @@ class SignalAdmin(admin.ModelAdmin):
     def has_change_permission(self, request, obj=None):
         return False
 
-    def has_delete_permission(self, request, obj=None):
-        return False
+    # def has_delete_permission(self, request, obj=None):
+    #     return False

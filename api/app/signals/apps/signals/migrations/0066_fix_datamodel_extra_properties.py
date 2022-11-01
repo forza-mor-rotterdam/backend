@@ -98,5 +98,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(migrate_data),
+        # migrations.RunPython(migrate_data),
     ]

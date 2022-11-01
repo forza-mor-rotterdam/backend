@@ -61,5 +61,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(_new_categories, None),  # No reverse possible
+        # migrations.RunPython(_new_categories, None),  # No reverse possible
     ]

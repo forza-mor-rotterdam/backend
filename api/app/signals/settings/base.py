@@ -30,7 +30,7 @@ SITE_ID = 1
 SITE_NAME = 'Signalen API'
 SITE_DOMAIN = os.getenv('SITE_DOMAIN', 'api.data.amsterdam.nl')
 
-ORGANIZATION_NAME = os.getenv('ORGANIZATION_NAME', 'Gemeente Amsterdam')
+ORGANIZATION_NAME = os.getenv('ORGANIZATION_NAME', 'Gemeente Rotterdam')
 
 # The prefix of the display value of the signal ID. Defaults to 'SIG-'. This wil generate an id like SIG-123456 when
 # using the `signal.get_id_display()` class method.
@@ -62,6 +62,7 @@ SIGNAL_APPS = [
     'signals.apps.dataset',
     'signals.apps.questionnaires',
     'signals.apps.my_signals',
+    'signals.apps.msb',
     'logs'
 ]
 
@@ -142,11 +143,13 @@ CACHES = {
 }
 
 # Django security settings
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
 SECURE_REDIRECT_EXEMPT = [r'^status/', ]  # Allow health checks on localhost.
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+
+LOCAL_DEVELOPMENT_AUTHENTICATION=os.getenv('LOCAL_DEVELOPMENT_AUTHENTICATION', True) in TRUE_VALUES
 
 
 # Internationalization
@@ -325,6 +328,7 @@ SWAGGER_SETTINGS = {
         'appName': 'Signal Swagger UI',
     },
 }
+MSB_API_URL = os.getenv('MSB_API_URL', 'https://api.meldingen.rotterdam.nl')
 
 # Sigmax settings
 SIGMAX_AUTH_TOKEN = os.getenv('SIGMAX_AUTH_TOKEN', None)

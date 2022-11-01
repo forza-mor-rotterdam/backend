@@ -151,5 +151,5 @@ class Migration(migrations.Migration):
                 )),
             ],
         ),
-        migrations.RunPython(_set_service_level),
+        # migrations.RunPython(_set_service_level),
     ]

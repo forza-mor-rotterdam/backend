@@ -343,7 +343,7 @@ class PrivateSignalSerializerList(SignalValidationMixin, HALSerializer):
     has_children = serializers.SerializerMethodField()
 
     attachments = PrivateSignalAttachmentRelatedField(view_name='private-signals-attachments-detail', many=True,
-                                                      required=False, read_only=False, write_only=True,
+                                                      required=False, read_only=False,
                                                       queryset=Attachment.objects.all())
 
     # The Session containing the given answers of a Questionnaire

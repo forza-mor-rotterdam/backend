@@ -206,5 +206,5 @@ class Migration(migrations.Migration):
                          ('TECHNISCHE_STORING', 'TECHNISCHE_STORING'), ('STOPEC3', 'STOPEC3')], default='REST',
                 max_length=20),
         ),  # New Handling codes
-        migrations.RunPython(SIG_2170, None),  # No rollback available when adding new categories
+        # migrations.RunPython(SIG_2170, None),  # No rollback available when adding new categories
     ]

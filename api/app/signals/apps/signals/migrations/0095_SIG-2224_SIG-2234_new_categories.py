@@ -96,5 +96,5 @@ class Migration(migrations.Migration):
                          ('TECHNISCHE_STORING', 'TECHNISCHE_STORING'), ('STOPEC3', 'STOPEC3'),
                          ('URGENTE_MELDINGEN', 'URGENTE_MELDINGEN'), ('3WGM', '3WGM')], default='REST', max_length=20),
         ),
-        migrations.RunPython(_new_categories, None),  # No reverse possible
+        # migrations.RunPython(_new_categories, None),  # No reverse possible
     ]

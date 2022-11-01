@@ -135,7 +135,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(_SIG_1708_new_categories, None),  # No reverse possible
-        migrations.RunPython(_SIG_1708_ml_translations, None),  # No reverse possible
-        migrations.RunPython(_SIG_1708_deactivate_categories, None),  # No reverse possible
+        # migrations.RunPython(_SIG_1708_new_categories, None),  # No reverse possible
+        # migrations.RunPython(_SIG_1708_ml_translations, None),  # No reverse possible
+        # migrations.RunPython(_SIG_1708_deactivate_categories, None),  # No reverse possible
     ]

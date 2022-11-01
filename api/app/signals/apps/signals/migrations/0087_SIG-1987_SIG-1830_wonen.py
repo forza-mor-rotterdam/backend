@@ -106,7 +106,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(SIG_1987, None),  # Rollback not supported
-        migrations.RunPython(SIG_1830, None),  # Rollback not supported
-        migrations.RunPython(link_categories_to_department, None),  # Rollback not supported
+        # migrations.RunPython(SIG_1987, None),  # Rollback not supported
+        # migrations.RunPython(SIG_1830, None),  # Rollback not supported
+        # migrations.RunPython(link_categories_to_department, None),  # Rollback not supported
     ]
