@@ -45,11 +45,17 @@ class MSBAuthBackend():
     """
     @staticmethod  # noqa: C901
     def authenticate(request):
-        auth_header = request.META.get('HTTP_AUTHORIZATION')
-        user_info = MSBService.get_usr_info("user_token")
-        claims, user_id = JWTAccessToken.token_data(auth_header)
-        if user_id == "ALWAYS_OK":
-            user_id = settings.TEST_LOGIN
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        if not username or not username:
+            raise exceptions.AuthenticationFailed("Credetials incomplete!")
+        success, user_token = MSBService.login(username, password)
+        if not success:
+            raise exceptions.AuthenticationFailed("Login failt")
+
+        # user_token = get_user_token_from_request(request)
+        user_info = MSBService.get_usr_info(user_token)
+        user_id = f"{user_info.get("result").get("user")[-6:]}@rotterdam.nl"
 
         auth_user = MSBAuthBackend.get_user(user_id)
         # We return only when we have correct scope, and user is known to `signals`.
@@ -114,4 +120,4 @@ AuthBackend = JWTAuthBackend
 if settings.LOCAL_DEVELOPMENT_AUTHENTICATION:
     AuthBackend = JWTAuthBackend
 else:
-    AuthBackend = JWTAuthBackend
+    AuthBackend = MSBAuthBackend
